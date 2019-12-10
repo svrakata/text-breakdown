@@ -4,6 +4,7 @@ import keggListPhraseBreakdown from "./kegg_list_phrase_breakdown"
 const keggListFilePath = path.resolve(__dirname, "temp", "kegg_list.csv")
 const keggListHistogramOneWordPhraseFilePath = path.resolve(__dirname, "temp", "kegg_histogram_one_word_phrase.csv")
 const keggListHistogramTwoWordsPhraseFilePath = path.resolve(__dirname, "temp", "kegg_histogram_two_words_phrase.csv")
+// tslint:disable-next-line: max-line-length
 const keggListHistogramThreeWordsPhraseFilePath = path.resolve(__dirname, "temp", "kegg_histogram_three_words_phrase.csv")
 
 keggListPhraseBreakdown(keggListFilePath, keggListHistogramOneWordPhraseFilePath, 1)
