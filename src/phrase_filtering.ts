@@ -1,4 +1,4 @@
-import { IPhrase } from "./phrase_breakdown"
+import { IPhrase } from "./phrase_splitter"
 
 interface IPhraseFilteringOptions {
     listOfPhrases: IPhrase[]

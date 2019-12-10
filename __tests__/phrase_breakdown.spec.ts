@@ -1,4 +1,4 @@
-import phraseBreakdown, { IPhrase } from "../src/phrase_breakdown"
+import phraseBreakdown, { IPhrase } from "../src/phrase_splitter"
 
 describe("Testing phrasing breakdown function", () => {
     it("Should throw an error if the numOfWords is different than positive integer", () => {

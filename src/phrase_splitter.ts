@@ -6,9 +6,9 @@ export interface IPhrase {
     phrase: string
 }
 
-type TPhraseBreakdown = (text: string, numOfWords: number) => IPhrase[]
+type TPhraseSplitter = (text: string, numOfWords: number) => IPhrase[]
 
-const phraseBreakdown: TPhraseBreakdown = (text: string, numOfWords: number) => {
+const phraseSplitter: TPhraseSplitter = (text: string, numOfWords: number) => {
 
     if (!isSafeInteger(numOfWords)) {
         throw new Error("The numOfWords parameter should be positive integer number.")
@@ -51,4 +51,4 @@ const phraseBreakdown: TPhraseBreakdown = (text: string, numOfWords: number) => 
 }
 
 
-export default phraseBreakdown
+export default phraseSplitter
