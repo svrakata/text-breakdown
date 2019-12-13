@@ -1,0 +1,4 @@
+Phrase splitting:
+    ✔ Make it work with csv files as input @done(19-12-13 18:44)
+    ✔ The splitting logic itself should work with arrays/ separate the logic for reading and parsing csv files to arrays/js objects @done(19-12-13 18:44)
+    

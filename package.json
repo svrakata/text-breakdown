@@ -30,7 +30,9 @@
   "license": "Apache-2.0",
   "dependencies": {
     "JSONStream": "^1.3.5",
+    "csv-parse": "^4.8.2",
     "lodash": "^4.17.15",
+    "stream-transform": "^2.0.1",
     "tslib": "~1.10.0"
   }
 }

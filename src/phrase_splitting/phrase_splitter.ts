@@ -1,12 +1,7 @@
 import { isSafeInteger } from "lodash"
-import { sanitizeString } from "./utilities"
+import { sanitizeString } from "../utilities/sanitize_string"
 
-export interface IPhrase {
-    occurances: number
-    phrase: string
-}
-
-type TPhraseSplitter = (text: string, numOfWords: number) => IPhrase[]
+type TPhraseSplitter = (text: string, numOfWords: number) => string[]
 
 const phraseSplitter: TPhraseSplitter = (text: string, numOfWords: number) => {
 
@@ -20,11 +15,11 @@ const phraseSplitter: TPhraseSplitter = (text: string, numOfWords: number) => {
 
     const sanitizedText = sanitizeString(text)
     const words = sanitizedText.split(" ")
-    const wordsHash = {}
+    const phrases = []
     let phrase = ""
 
     if (numOfWords >= words.length) {
-        return [ { phrase: words.join(" "), occurances: 1 } ]
+        return [ words.join(" ") ]
     }
 
     for (let i = 0; i < words.length; i++) {
@@ -36,18 +31,12 @@ const phraseSplitter: TPhraseSplitter = (text: string, numOfWords: number) => {
             phrase += `${phrase !== "" ? " " : ""}${words[ y ]}`
         }
 
-        if (!wordsHash.hasOwnProperty(phrase)) {
-            wordsHash[ phrase ] = 1
-        } else {
-            wordsHash[ phrase ] += 1
-        }
+        phrases.push(phrase)
 
         phrase = ""
     }
 
-    return Object.entries<number>(wordsHash)
-        .map(([ key, val ]) => ({ phrase: key, occurances: val }))
-        .sort((prev, next) => next.occurances - prev.occurances)
+    return phrases.sort((a, b) => a.localeCompare(b))
 }
 
 

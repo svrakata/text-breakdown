@@ -1,4 +1,7 @@
-import { IPhrase } from "./phrase_splitter"
+export interface IPhrase {
+    occurances: number
+    phrase: string
+}
 
 interface IPhraseFilteringOptions {
     listOfPhrases: IPhrase[]
