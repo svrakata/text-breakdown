@@ -15,15 +15,14 @@ const csvPhraseBreakdown = (options: ICSVPhraseBreakdownOptions) => {
     // takes csv file path
     // takes properties to read from the data or column 1,2,3,4 etc
     // takes number of words in array which determines the set of phrase splitting --> [1,3], [4], [2,3,4], [4,9]
-
     // returns csv with phrase/occurances on each line for each number of "word per phrase" sets
 
     const csvParserOptions = {
         columns: true,
     }
+
     const { csvFilePath, outFolderPath, propertiesToRead } = options
     const numberOfWordsSet = options?.numberOfWordsSet || [ 1 ]
-
 
     propertiesToRead.forEach((prop) => {
         numberOfWordsSet.forEach((numOfWords) => {
@@ -54,16 +53,15 @@ const csvPhraseBreakdown = (options: ICSVPhraseBreakdownOptions) => {
                     // generate the phrases of the prop
                     // match each phrase to the hash
 
+
                     mapListOfPhrases(phraseHash, phraseSplitter(chunk[ prop ], numOfWords))
                     chunk = csvParser.read()
                 }
             })
 
             csvReadStream.pipe(csvParser)
-
         })
     })
-
 }
 
 

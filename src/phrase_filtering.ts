@@ -31,14 +31,12 @@ const phraseFiltering: TPhraseFiltering = ({ listOfPhrases, threshold = 0, skipP
                 listOfPhrases
                     .filter(({ phrase }) => skipPhrases.includes(phrase)),
             )
-
     }
 
     if (filterPhrases.length > 0) {
         filteredPhrases = filteredPhrases
             .filter(({ phrase }) => !filterPhrases.includes(phrase))
     }
-
 
     return filteredPhrases.map(({ phrase }) => phrase).sort()
 }

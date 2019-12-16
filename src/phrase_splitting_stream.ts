@@ -5,7 +5,6 @@ import phraseSplitter from "./phrase_splitting/phrase_splitter"
 class PhraseSplittingStream extends Transform {
     public phraseOccurancesMap: any
 
-
     constructor(public prop: string, public numOfWords: number) {
         super({
             readableObjectMode: true,
