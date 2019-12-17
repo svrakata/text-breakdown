@@ -50,7 +50,7 @@ import filterWords from "./filter_words"
 // })
 
 
-const inputFilePath = path.resolve(__dirname, "temp", "medicinal_herbs_names_only.csv")
+// const inputFilePath = path.resolve(__dirname, "temp", "medicinal_herbs_names_only.csv")
 // filters
 const typeOfExtractionFilePath = path.resolve(__dirname, "filters", "type_of_extraction.json")
 const regionOfExtractionFilePath = path.resolve(__dirname, "filters", "region_of_extraction.json")
@@ -62,12 +62,54 @@ const stopWords = JSON.parse(fs.readFileSync(stopWordsFilePath).toString())
 
 const filters = typeOfExtraction.concat(regionOfExtraction).concat(stopWords)
 
+const outputFolder = path.resolve(__dirname, "filtered")
 
-// const outputFilePath = path.resolve(__dirname, "example", "filtered_kegg_list.csv")
-const outputFilePath = path.resolve(__dirname, "example", "filtered_medicinal_herbs_names_only.csv")
+// herbs
+const herbsInputFilePath = path.resolve(__dirname, "temp", "medicinal_herbs_names_only.csv")
+const herbsOutputFilePath = path.resolve(__dirname, outputFolder, "filtered_medicinal_herbs_names_only.csv")
 
 filterWords({
-    csvFilePath: inputFilePath,
+    csvFilePath: herbsInputFilePath,
     filterList: filters,
-    outputFilePath,
+    outputFilePath: herbsOutputFilePath,
+})
+
+// toxins
+const toxinsInputFilePath = path.resolve(__dirname, "temp/yana_filtered", "yana_natural_toxins.csv")
+const toxinsOutputFilePath = path.resolve(__dirname, outputFolder, "filtered_natural_toxins.csv")
+
+filterWords({
+    csvFilePath: toxinsInputFilePath,
+    filterList: filters,
+    outputFilePath: toxinsOutputFilePath,
+})
+
+// pesticides
+const pesticidesInputFilePath = path.resolve(__dirname, "temp/yana_filtered", "yana_pesticides.csv")
+const pesticidesOutputFilePath = path.resolve(__dirname, outputFolder, "filtered_pesticides.csv")
+
+filterWords({
+    csvFilePath: pesticidesInputFilePath,
+    filterList: filters,
+    outputFilePath: pesticidesOutputFilePath,
+})
+
+// cancerogens
+const cancerogoensInputFile = path.resolve(__dirname, "temp/yana_filtered", "yana_cancerogenes.csv")
+const cancerogensOutputFile = path.resolve(__dirname, outputFolder, "filtered_cancerogenes.csv")
+
+filterWords({
+    csvFilePath: cancerogoensInputFile,
+    filterList: filters,
+    outputFilePath: cancerogensOutputFile,
+})
+
+// endoDisruptiveComps
+const endoDisruptiveCompInputFile = path.resolve(__dirname, "temp/yana_filtered", "yana_endocrine_disruptive_compounds.csv")
+const endoDisruptiveCompOutputFile = path.resolve(__dirname, outputFolder, "filtered_endo_disruptive_comp.csv")
+
+filterWords({
+    csvFilePath: endoDisruptiveCompInputFile,
+    filterList: filters,
+    outputFilePath: endoDisruptiveCompOutputFile,
 })
